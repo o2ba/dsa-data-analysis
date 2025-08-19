@@ -41,11 +41,19 @@ type Summary struct {
 	TotalLightZipSizeTB float64 `json:"total_light_zip_size_tb"`
 	DateRange           string  `json:"date_range"`
 	ScrapedAt           string  `json:"scraped_at"`
+	SamplingStrategy    string  `json:"sampling_strategy,omitempty"`
+}
+
+type SampledSummaries struct {
+	Every2Days Summary `json:"every_2_days"`
+	Every4Days Summary `json:"every_4_days"`
+	Every6Days Summary `json:"every_6_days"`
 }
 
 type DataExport struct {
-	Summary Summary       `json:"summary"`
-	Records []DailyRecord `json:"records"`
+	Summary          Summary          `json:"summary"`
+	SampledSummaries SampledSummaries `json:"sampled_summaries"`
+	Records          []DailyRecord    `json:"records"`
 }
 
 func main() {
@@ -57,10 +65,14 @@ func main() {
 	// Generate summary
 	summary := generateSummary(records)
 
+	// Generate sampled summaries
+	sampledSummaries := generateSampledSummaries(records)
+
 	// Create export structure
 	export := DataExport{
-		Summary: summary,
-		Records: records,
+		Summary:          summary,
+		SampledSummaries: sampledSummaries,
+		Records:          records,
 	}
 
 	// Convert to JSON
@@ -122,6 +134,46 @@ func generateSummary(records []DailyRecord) Summary {
 		DateRange:           dateRange,
 		ScrapedAt:           time.Now().UTC().Format(time.RFC3339),
 	}
+}
+
+func generateSampledSummaries(records []DailyRecord) SampledSummaries {
+	return SampledSummaries{
+		// N should not be divisible by 7 so we don't sample the same weekday
+		Every2Days: generateSampledSummary(records, 2),
+		Every4Days: generateSampledSummary(records, 4),
+		Every6Days: generateSampledSummary(records, 6),
+	}
+}
+
+func generateSampledSummary(records []DailyRecord, interval int) Summary {
+	if len(records) == 0 {
+		return Summary{}
+	}
+
+	// Sort records by date to ensure consistent sampling
+	sortedRecords := make([]DailyRecord, len(records))
+	copy(sortedRecords, records)
+
+	// Simple sort by date string (works for YYYY-MM-DD format)
+	for i := 0; i < len(sortedRecords)-1; i++ {
+		for j := i + 1; j < len(sortedRecords); j++ {
+			if sortedRecords[i].Date > sortedRecords[j].Date {
+				sortedRecords[i], sortedRecords[j] = sortedRecords[j], sortedRecords[i]
+			}
+		}
+	}
+
+	// Sample every N days starting from the first day (index 0)
+	var sampledRecords []DailyRecord
+	for i := 0; i < len(sortedRecords); i += interval {
+		sampledRecords = append(sampledRecords, sortedRecords[i])
+	}
+
+	// Generate summary for sampled records
+	summary := generateSummary(sampledRecords)
+	summary.SamplingStrategy = fmt.Sprintf("Every %d days from first day", interval)
+
+	return summary
 }
 
 func formatNumber(n int64) string {
