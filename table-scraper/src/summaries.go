@@ -38,8 +38,6 @@ func generateSummary(records []DailyRecord) Summary {
 
 	var totalFullCSVSizeTB = mbToTb(totalFullCSV)
 	var totalFullZipSizeTB = mbToTb(totalFullZip)
-	var totalLightCSVSizeTB = mbToTb(totalLightCSV)
-	var totalLightZipSizeTB = mbToTb(totalLightZip)
 	var totalFullParquetConservativeSize = totalFullCSVSizeTB * parquetReductionFactorConservative
 	var totalFullParquetAggressiveSize = totalFullCSVSizeTB * parquetReductionFactorAggressive
 
@@ -48,15 +46,11 @@ func generateSummary(records []DailyRecord) Summary {
 		TotalStatements:                  totalStatements,
 		TotalFullCSVSizeTB:               totalFullCSVSizeTB,
 		TotalFullZipSizeTB:               totalFullZipSizeTB,
-		TotalLightCSVSizeTB:              totalLightCSVSizeTB,
-		TotalLightZipSizeTB:              totalLightZipSizeTB,
 		TotalFullParquetConservativeSize: totalFullParquetConservativeSize,
 		TotalFullParquetAggressiveSize:   totalFullParquetAggressiveSize,
 		S3StandardCosts: getS3StorageCosts(
 			totalFullCSVSizeTB,
 			totalFullZipSizeTB,
-			totalLightCSVSizeTB,
-			totalLightZipSizeTB,
 			euCentralS3StroageStandardPerGB,
 			parquetReductionFactorConservative,
 			parquetReductionFactorAggressive,
@@ -64,8 +58,6 @@ func generateSummary(records []DailyRecord) Summary {
 		S3DeepGlacierCosts: getS3StorageCosts(
 			totalFullCSVSizeTB,
 			totalFullZipSizeTB,
-			totalLightCSVSizeTB,
-			totalLightZipSizeTB,
 			euCentralS3StroageGlacierDeepArchivePerGB,
 			parquetReductionFactorConservative,
 			parquetReductionFactorAggressive,
