@@ -11,9 +11,11 @@ import (
 const (
 	baseURL     = "https://transparency.dsa.ec.europa.eu/explore-data/download?page="
 	scrapeDelay = 500
-	// I'm using eu-central because DSA is also using eu-central S3 - It minimizes the time Fargate will take
 	// Technically for first 50 TB only, but for now max data size is still below
-	EUCentralS3StroageStandardPerGB = 0.0245
+	euCentralS3StroageStandardPerGB           = 0.0245
+	euCentralS3StroageGlacierDeepArchivePerGB = 0.00099
+	parquetReductionFactorConservative        = 0.2
+	parquetReductionFactorAggressive          = 0.1
 )
 
 func main() {

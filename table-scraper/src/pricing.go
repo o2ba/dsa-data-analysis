@@ -5,11 +5,18 @@ func getS3StorageCosts(
 	fullZipSizeTB float64,
 	lightCSVSizeTB float64,
 	lightZipSizeTB float64,
+	pricePerGB float64,
+	parquetConservativeFactor float64,
+	parquetAggressiveFactor float64,
 ) S3StorageCosts {
+	const tbToGB = 1000.0
+
 	return S3StorageCosts{
-		StorageFullCSV:  fullCSVSizeTB * 1000 * EUCentralS3StroageStandardPerGB,
-		StorageFullZip:  fullZipSizeTB * 1000 * EUCentralS3StroageStandardPerGB,
-		StorageLightCSV: lightCSVSizeTB * 1000 * EUCentralS3StroageStandardPerGB,
-		StorageLightZip: lightZipSizeTB * 1000 * EUCentralS3StroageStandardPerGB,
+		StorageFullCSV:             fullCSVSizeTB * tbToGB * pricePerGB,
+		StorageFullZip:             fullZipSizeTB * tbToGB * pricePerGB,
+		StorageLightCSV:            lightCSVSizeTB * tbToGB * pricePerGB,
+		StorageLightZip:            lightZipSizeTB * tbToGB * pricePerGB,
+		StorageParquetConservative: (fullCSVSizeTB * tbToGB * pricePerGB) * parquetConservativeFactor,
+		StorageParquetAggressive:   (fullCSVSizeTB * tbToGB * pricePerGB) * parquetAggressiveFactor,
 	}
 }

@@ -7,14 +7,26 @@
       "total_full_zip_size_tb": 1.6860789966583263,
       "total_light_csv_size_tb": 12.12357789993288,
       "total_light_zip_size_tb": 1.2308271694183355,
+      "total_full_parquet_conservative_size": 6.755646484374996,
+      "total_full_parquet_aggressive_size": 3.377823242187498,
       "date_range": "2023-09-25 to 2025-08-18",
-      "scraped_at": "2025-08-19T18:39:55Z",
+      "scraped_at": "2025-08-19T19:18:08Z",
       "sampling_strategy": "Every 1 days from first day",
       "eu_central_s3_standard_storage_costs": {
         "s3_storage_full_csv": 827.566694335937,
         "s3_storage_full_zip": 41.308935418128996,
         "s3_storage_light_csv": 297.02765854835553,
-        "s3_storage_light_zip": 30.155265650749218
+        "s3_storage_light_zip": 30.155265650749218,
+        "s3_storage_parquet_conservative": 165.5133388671874,
+        "s3_storage_parquet_aggressive": 82.7566694335937
+      },
+      "eu_central_s3_deep_glacier_storage_costs": {
+        "s3_storage_full_csv": 33.440450097656225,
+        "s3_storage_full_zip": 1.6692182066917431,
+        "s3_storage_light_csv": 12.00234212093355,
+        "s3_storage_light_zip": 1.2185188977241521,
+        "s3_storage_parquet_conservative": 6.688090019531245,
+        "s3_storage_parquet_aggressive": 3.3440450097656225
       }
     },
     "every_2_days": {
@@ -24,14 +36,26 @@
       "total_full_zip_size_tb": 0.8389407444000236,
       "total_light_csv_size_tb": 6.030130634307861,
       "total_light_zip_size_tb": 0.6126086616516115,
+      "total_full_parquet_conservative_size": 3.3575917968750013,
+      "total_full_parquet_aggressive_size": 1.6787958984375007,
       "date_range": "2023-09-25 to 2025-08-17",
-      "scraped_at": "2025-08-19T18:39:55Z",
+      "scraped_at": "2025-08-19T19:18:08Z",
       "sampling_strategy": "Every 2 days from first day",
       "eu_central_s3_standard_storage_costs": {
         "s3_storage_full_csv": 411.3049951171877,
         "s3_storage_full_zip": 20.55404823780058,
         "s3_storage_light_csv": 147.7382005405426,
-        "s3_storage_light_zip": 15.008912210464484
+        "s3_storage_light_zip": 15.008912210464484,
+        "s3_storage_parquet_conservative": 82.26099902343753,
+        "s3_storage_parquet_aggressive": 41.13049951171877
+      },
+      "eu_central_s3_deep_glacier_storage_costs": {
+        "s3_storage_full_csv": 16.620079394531256,
+        "s3_storage_full_zip": 0.8305513369560233,
+        "s3_storage_light_csv": 5.969829327964782,
+        "s3_storage_light_zip": 0.6064825750350954,
+        "s3_storage_parquet_conservative": 3.3240158789062515,
+        "s3_storage_parquet_aggressive": 1.6620079394531257
       }
     },
     "every_4_days": {
@@ -41,14 +65,26 @@
       "total_full_zip_size_tb": 0.42673404693603517,
       "total_light_csv_size_tb": 3.077581806182863,
       "total_light_zip_size_tb": 0.3122194099426271,
+      "total_full_parquet_conservative_size": 1.7134082031250006,
+      "total_full_parquet_aggressive_size": 0.8567041015625003,
       "date_range": "2023-09-25 to 2025-08-17",
-      "scraped_at": "2025-08-19T18:39:55Z",
+      "scraped_at": "2025-08-19T19:18:08Z",
       "sampling_strategy": "Every 4 days from first day",
       "eu_central_s3_standard_storage_costs": {
         "s3_storage_full_csv": 209.8925048828126,
         "s3_storage_full_zip": 10.454984149932862,
         "s3_storage_light_csv": 75.40075425148015,
-        "s3_storage_light_zip": 7.649375543594363
+        "s3_storage_light_zip": 7.649375543594363,
+        "s3_storage_parquet_conservative": 41.97850097656252,
+        "s3_storage_parquet_aggressive": 20.98925048828126
+      },
+      "eu_central_s3_deep_glacier_storage_costs": {
+        "s3_storage_full_csv": 8.481370605468754,
+        "s3_storage_full_zip": 0.4224667064666748,
+        "s3_storage_light_csv": 3.0468059881210343,
+        "s3_storage_light_zip": 0.30909721584320077,
+        "s3_storage_parquet_conservative": 1.6962741210937509,
+        "s3_storage_parquet_aggressive": 0.8481370605468754
       }
     },
     "every_6_days": {
@@ -58,14 +94,26 @@
       "total_full_zip_size_tb": 0.27356413841247557,
       "total_light_csv_size_tb": 1.9574450874328608,
       "total_light_zip_size_tb": 0.1992735385894776,
+      "total_full_parquet_conservative_size": 1.0894121093750004,
+      "total_full_parquet_aggressive_size": 0.5447060546875002,
       "date_range": "2023-09-25 to 2025-08-15",
-      "scraped_at": "2025-08-19T18:39:55Z",
+      "scraped_at": "2025-08-19T19:18:08Z",
       "sampling_strategy": "Every 6 days from first day",
       "eu_central_s3_standard_storage_costs": {
         "s3_storage_full_csv": 133.45298339843754,
         "s3_storage_full_zip": 6.702321391105652,
         "s3_storage_light_csv": 47.9574046421051,
-        "s3_storage_light_zip": 4.882201695442201
+        "s3_storage_light_zip": 4.882201695442201,
+        "s3_storage_parquet_conservative": 26.69059667968751,
+        "s3_storage_parquet_aggressive": 13.345298339843755
+      },
+      "eu_central_s3_deep_glacier_storage_costs": {
+        "s3_storage_full_csv": 5.392589941406252,
+        "s3_storage_full_zip": 0.2708284970283508,
+        "s3_storage_light_csv": 1.9378706365585323,
+        "s3_storage_light_zip": 0.19728080320358282,
+        "s3_storage_parquet_conservative": 1.0785179882812503,
+        "s3_storage_parquet_aggressive": 0.5392589941406252
       }
     }
   },

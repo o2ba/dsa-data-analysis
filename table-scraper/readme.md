@@ -5,4 +5,4 @@ This script serves to scrape the transparency database of the DSA (Digital Servi
 
 ## AWS Costs
 
-For AWS, we're choosing eu-central-1 because that's where the EU hosts their own data. This minimizes the time we will have our ECS Fargate running, as well as data transfer costs. The EU is one the one who will likely foot most of the bill here
+For AWS, we're choosing eu-central-1 because that's where the EU hosts their own data. 

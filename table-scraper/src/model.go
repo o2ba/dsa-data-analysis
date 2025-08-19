@@ -14,23 +14,28 @@ type DailyRecord struct {
 }
 
 type Summary struct {
-	TotalRecords        int            `json:"total_records"`
-	TotalStatements     int64          `json:"total_statements"`
-	TotalFullCSVSizeTB  float64        `json:"total_full_csv_size_tb"`
-	TotalFullZipSizeTB  float64        `json:"total_full_zip_size_tb"`
-	TotalLightCSVSizeTB float64        `json:"total_light_csv_size_tb"`
-	TotalLightZipSizeTB float64        `json:"total_light_zip_size_tb"`
-	DateRange           string         `json:"date_range"`
-	ScrapedAt           string         `json:"scraped_at"`
-	SamplingStrategy    string         `json:"sampling_strategy,omitempty"`
-	StorageCosts        S3StorageCosts `json:"eu_central_s3_standard_storage_costs,omitempty"`
+	TotalRecords                     int            `json:"total_records"`
+	TotalStatements                  int64          `json:"total_statements"`
+	TotalFullCSVSizeTB               float64        `json:"total_full_csv_size_tb"`
+	TotalFullZipSizeTB               float64        `json:"total_full_zip_size_tb"`
+	TotalLightCSVSizeTB              float64        `json:"total_light_csv_size_tb"`
+	TotalLightZipSizeTB              float64        `json:"total_light_zip_size_tb"`
+	TotalFullParquetConservativeSize float64        `json:"total_full_parquet_conservative_size"`
+	TotalFullParquetAggressiveSize   float64        `json:"total_full_parquet_aggressive_size"`
+	DateRange                        string         `json:"date_range"`
+	ScrapedAt                        string         `json:"scraped_at"`
+	SamplingStrategy                 string         `json:"sampling_strategy,omitempty"`
+	S3StandardCosts                  S3StorageCosts `json:"eu_central_s3_standard_storage_costs,omitempty"`
+	S3DeepGlacierCosts               S3StorageCosts `json:"eu_central_s3_deep_glacier_storage_costs,omitempty"`
 }
 
 type S3StorageCosts struct {
-	StorageFullCSV  float64 `json:"s3_storage_full_csv"`
-	StorageFullZip  float64 `json:"s3_storage_full_zip"`
-	StorageLightCSV float64 `json:"s3_storage_light_csv"`
-	StorageLightZip float64 `json:"s3_storage_light_zip"`
+	StorageFullCSV             float64 `json:"s3_storage_full_csv"`
+	StorageFullZip             float64 `json:"s3_storage_full_zip"`
+	StorageLightCSV            float64 `json:"s3_storage_light_csv"`
+	StorageLightZip            float64 `json:"s3_storage_light_zip"`
+	StorageParquetConservative float64 `json:"s3_storage_parquet_conservative"`
+	StorageParquetAggressive   float64 `json:"s3_storage_parquet_aggressive"`
 }
 
 type SampledSummaries struct {

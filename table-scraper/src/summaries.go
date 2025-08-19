@@ -40,22 +40,38 @@ func generateSummary(records []DailyRecord) Summary {
 	var totalFullZipSizeTB = mbToTb(totalFullZip)
 	var totalLightCSVSizeTB = mbToTb(totalLightCSV)
 	var totalLightZipSizeTB = mbToTb(totalLightZip)
+	var totalFullParquetConservativeSize = totalFullCSVSizeTB * parquetReductionFactorConservative
+	var totalFullParquetAggressiveSize = totalFullCSVSizeTB * parquetReductionFactorAggressive
 
 	return Summary{
-		TotalRecords:        len(records),
-		TotalStatements:     totalStatements,
-		TotalFullCSVSizeTB:  totalFullCSVSizeTB,
-		TotalFullZipSizeTB:  totalFullZipSizeTB,
-		TotalLightCSVSizeTB: totalLightCSVSizeTB,
-		TotalLightZipSizeTB: totalLightZipSizeTB,
-		StorageCosts: getS3StorageCosts(
+		TotalRecords:                     len(records),
+		TotalStatements:                  totalStatements,
+		TotalFullCSVSizeTB:               totalFullCSVSizeTB,
+		TotalFullZipSizeTB:               totalFullZipSizeTB,
+		TotalLightCSVSizeTB:              totalLightCSVSizeTB,
+		TotalLightZipSizeTB:              totalLightZipSizeTB,
+		TotalFullParquetConservativeSize: totalFullParquetConservativeSize,
+		TotalFullParquetAggressiveSize:   totalFullParquetAggressiveSize,
+		S3StandardCosts: getS3StorageCosts(
 			totalFullCSVSizeTB,
 			totalFullZipSizeTB,
 			totalLightCSVSizeTB,
 			totalLightZipSizeTB,
+			euCentralS3StroageStandardPerGB,
+			parquetReductionFactorConservative,
+			parquetReductionFactorAggressive,
 		),
-		DateRange:           dateRange,
-		ScrapedAt:           time.Now().UTC().Format(time.RFC3339),
+		S3DeepGlacierCosts: getS3StorageCosts(
+			totalFullCSVSizeTB,
+			totalFullZipSizeTB,
+			totalLightCSVSizeTB,
+			totalLightZipSizeTB,
+			euCentralS3StroageGlacierDeepArchivePerGB,
+			parquetReductionFactorConservative,
+			parquetReductionFactorAggressive,
+		),
+		DateRange: dateRange,
+		ScrapedAt: time.Now().UTC().Format(time.RFC3339),
 	}
 }
 
