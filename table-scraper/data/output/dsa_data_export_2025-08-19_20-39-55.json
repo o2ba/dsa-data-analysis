@@ -1,13 +1,73 @@
 {
-  "summary": {
-    "total_records": 694,
-    "total_statements": 33640190906,
-    "total_full_csv_size_tb": 33.77823242187498,
-    "total_full_zip_size_tb": 1.686078996658326,
-    "total_light_csv_size_tb": 12.123577899932867,
-    "total_light_zip_size_tb": 1.230827169418333,
-    "date_range": "2023-09-25 to 2025-08-18",
-    "scraped_at": "2025-08-19T16:48:44Z"
+  "summaries": {
+    "every_day": {
+      "total_records": 694,
+      "total_statements": 33640190906,
+      "total_full_csv_size_tb": 33.778232421874975,
+      "total_full_zip_size_tb": 1.6860789966583263,
+      "total_light_csv_size_tb": 12.12357789993288,
+      "total_light_zip_size_tb": 1.2308271694183355,
+      "date_range": "2023-09-25 to 2025-08-18",
+      "scraped_at": "2025-08-19T18:39:55Z",
+      "sampling_strategy": "Every 1 days from first day",
+      "eu_central_s3_standard_storage_costs": {
+        "s3_storage_full_csv": 827.566694335937,
+        "s3_storage_full_zip": 41.308935418128996,
+        "s3_storage_light_csv": 297.02765854835553,
+        "s3_storage_light_zip": 30.155265650749218
+      }
+    },
+    "every_2_days": {
+      "total_records": 347,
+      "total_statements": 16728484496,
+      "total_full_csv_size_tb": 16.787958984375006,
+      "total_full_zip_size_tb": 0.8389407444000236,
+      "total_light_csv_size_tb": 6.030130634307861,
+      "total_light_zip_size_tb": 0.6126086616516115,
+      "date_range": "2023-09-25 to 2025-08-17",
+      "scraped_at": "2025-08-19T18:39:55Z",
+      "sampling_strategy": "Every 2 days from first day",
+      "eu_central_s3_standard_storage_costs": {
+        "s3_storage_full_csv": 411.3049951171877,
+        "s3_storage_full_zip": 20.55404823780058,
+        "s3_storage_light_csv": 147.7382005405426,
+        "s3_storage_light_zip": 15.008912210464484
+      }
+    },
+    "every_4_days": {
+      "total_records": 174,
+      "total_statements": 8541039966,
+      "total_full_csv_size_tb": 8.567041015625003,
+      "total_full_zip_size_tb": 0.42673404693603517,
+      "total_light_csv_size_tb": 3.077581806182863,
+      "total_light_zip_size_tb": 0.3122194099426271,
+      "date_range": "2023-09-25 to 2025-08-17",
+      "scraped_at": "2025-08-19T18:39:55Z",
+      "sampling_strategy": "Every 4 days from first day",
+      "eu_central_s3_standard_storage_costs": {
+        "s3_storage_full_csv": 209.8925048828126,
+        "s3_storage_full_zip": 10.454984149932862,
+        "s3_storage_light_csv": 75.40075425148015,
+        "s3_storage_light_zip": 7.649375543594363
+      }
+    },
+    "every_6_days": {
+      "total_records": 116,
+      "total_statements": 5426370667,
+      "total_full_csv_size_tb": 5.447060546875002,
+      "total_full_zip_size_tb": 0.27356413841247557,
+      "total_light_csv_size_tb": 1.9574450874328608,
+      "total_light_zip_size_tb": 0.1992735385894776,
+      "date_range": "2023-09-25 to 2025-08-15",
+      "scraped_at": "2025-08-19T18:39:55Z",
+      "sampling_strategy": "Every 6 days from first day",
+      "eu_central_s3_standard_storage_costs": {
+        "s3_storage_full_csv": 133.45298339843754,
+        "s3_storage_full_zip": 6.702321391105652,
+        "s3_storage_light_csv": 47.9574046421051,
+        "s3_storage_light_zip": 4.882201695442201
+      }
+    }
   },
   "records": [
     {
