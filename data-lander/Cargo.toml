@@ -1,0 +1,13 @@
+[package]
+name = "data-lander"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+parquet = "56.0.0"
+polars = { version = "0.50.0", features = ["parquet", "csv", "json"] }
+aws-config = { version = "1.1.7", features = ["behavior-version-latest"] }
+aws-sdk-s3 = "1.103.0"
+tokio = { version = "1", features = ["full"] }
+bytes = "1.x" 
+path-slash = "0.2"

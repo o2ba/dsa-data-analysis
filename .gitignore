@@ -2,3 +2,5 @@
 .kiro
 dsa-tdb/
 **/.env
+**/target/*
+Makefile
