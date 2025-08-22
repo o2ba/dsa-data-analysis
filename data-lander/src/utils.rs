@@ -20,11 +20,15 @@ pub async fn get_s3_config() -> aws_sdk_s3::Config {
     let s3_region: String =
         std::env::var("S3_REGION").expect("msg: S3_REGION environment variable not set");
 
-    // Load the default AWS configuration (includes credentials from ~/.aws/credentials)
+    println!("Using AWS region: {}", s3_region);
+
+    // Load the default AWS configuration
     let aws_config = aws_config::defaults(aws_config::BehaviorVersion::latest())
         .region(Region::new(s3_region))
         .load()
         .await;
+
+    println!("AWS configuration loaded successfully");
 
     aws_sdk_s3::Config::from(&aws_config)
 }

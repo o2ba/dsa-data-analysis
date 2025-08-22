@@ -4,37 +4,59 @@ use log::{info, warn};
 
 mod converter_uploader;
 mod downloader;
+mod platform_collector;
 mod unzipper;
 mod utils;
 
-// Hardcoding them because we can't really change these after the fact
-const ALLOWED_VLOPS: [&str; 11] = [
-    "Facebook",
-    "Discord Netherlands B.V.",
-    "Google Maps",
-    "Instagram",
-    "Kleinanzeigen",
-    "Leboncoin",
-    "LinkedIn",
-    "Reddit",
-    "Telegram",
-    "TikTok",
-    "X",
-];
-
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Initialize logger
+    env_logger::init();
+    
     // Load envs
     dotenv().ok();
+    
+    println!("Starting data-lander application...");
+
+    // Debug environment variables
+    println!("Environment variables:");
+    for (key, value) in std::env::vars() {
+        if key.starts_with("AWS_") || key.starts_with("S3_") || key == "URL" {
+            if key.contains("SECRET") || key.contains("KEY") {
+                println!("  {}: [REDACTED]", key);
+            } else {
+                println!("  {}: {}", key, value);
+            }
+        }
+    }
 
     // Get the URL
-    let url = std::env::var("URL").expect("msg: URL environment variable not set");
+    let url = match std::env::var("URL") {
+        Ok(url) => {
+            println!("URL found: {}", url);
+            url
+        }
+        Err(e) => {
+            eprintln!("URL environment variable not set: {}", e);
+            return Err(Box::new(e) as Box<dyn std::error::Error>);
+        }
+    };
 
     // Initialize S3 config
-    let s3_client = Client::from_conf(utils::get_s3_config().await);
+    println!("Initializing S3 config...");
+    let s3_config = utils::get_s3_config().await;
+    let s3_client = Client::from_conf(s3_config);
 
-    let s3_bucket: String =
-        std::env::var("S3_BUCKET_NAME").expect("msg: S3_BUCKET_NAME environment variable not set");
+    let s3_bucket: String = match std::env::var("S3_BUCKET_NAME") {
+        Ok(bucket) => {
+            println!("S3 bucket found: {}", bucket);
+            bucket
+        }
+        Err(e) => {
+            eprintln!("S3_BUCKET_NAME environment variable not set: {}", e);
+            return Err(Box::new(e) as Box<dyn std::error::Error>);
+        }
+    };
 
     // Create a prefix based on the URL
     let temp_file = downloader::download_zip_to_temp(&url).await?;
@@ -68,6 +90,20 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         } else {
             warn!("Non non-CSV file found, skipping...: {:?}", file_path);
         }
+    }
+
+    println!("✅ Data processing completed successfully!");
+    println!("Processed {} files total", extracted_files.len());
+    
+    // Check if this should be a one-time job or keep running
+    if std::env::var("KEEP_ALIVE").unwrap_or_default() == "true" {
+        println!("KEEP_ALIVE=true, entering sleep mode...");
+        loop {
+            tokio::time::sleep(tokio::time::Duration::from_secs(3600)).await; // Sleep 1 hour
+            println!("Still alive... (sleeping)");
+        }
+    } else {
+        println!("Job completed, exiting normally.");
     }
 
     Ok(())
