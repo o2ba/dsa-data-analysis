@@ -21,8 +21,11 @@ async def convert_filter_and_upload_direct(
         "TikTok", "X"
     ]
     
-    # Read and filter CSV
-    df = pl.scan_csv(csv_path).filter(
+    # Read and filter CSV - force platform_uid to string to handle mixed types
+    df = pl.scan_csv(
+        csv_path,
+        dtypes={"platform_uid": pl.Utf8}  # Force platform_uid to string
+    ).filter(
         pl.col("platform_name").is_in(allowed_platforms)
     ).collect()
     

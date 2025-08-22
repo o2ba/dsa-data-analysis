@@ -44,7 +44,7 @@ async def merge_platform_parquets(
                 temp_paths.append(temp_path)
             
             # Use Polars streaming engine
-            merged_key = f"{prefix}{platform}/merged.parquet"
+            merged_key = f"{prefix}{platform}/{re.sub(r'/', '-', prefix)}-{platform}-merged.parquet"
             with tempfile.NamedTemporaryFile(suffix='.parquet') as temp_merged:
                 # This processes in streaming mode - low memory!
                 (
