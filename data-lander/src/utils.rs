@@ -9,9 +9,9 @@ pub fn get_s3_prefix(url: &str) -> Result<String, Box<dyn std::error::Error>> {
     let date = get_date_from_url(url)?;
 
     let prefix = if is_light_variant {
-        format!("global-light/{:04}-{:02}-{:02}/", date[0], date[1], date[2])
+        format!("global-light/{:04}/{:02}/{:02}/", date[0], date[1], date[2])
     } else {
-        format!("global-full/{:04}-{:02}-{:02}/", date[0], date[1], date[2])
+        format!("global-full/{:04}/{:02}/{:02}/", date[0], date[1], date[2])
     };
     Ok(prefix)
 }
