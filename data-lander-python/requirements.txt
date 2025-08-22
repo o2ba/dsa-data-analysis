@@ -1,0 +1,8 @@
+boto3
+aiohttp
+aiofiles
+python-dotenv
+loguru
+pandas
+pyarrow
+polars
