@@ -16,15 +16,18 @@ async def convert_filter_and_upload_direct(
     """Process CSV, split by platform, and upload separate Parquet files."""
     
     allowed_platforms = [
-        "Facebook", "Discord Netherlands B.V.", "Google Maps", "Instagram",
-        "Kleinanzeigen", "Leboncoin", "LinkedIn", "Reddit", "Telegram",
-        "TikTok", "X"
+        # "Facebook", "Discord Netherlands B.V.", 
+        "Google Maps",
+        # "Instagram",
+        # "Kleinanzeigen", "Leboncoin", "LinkedIn", "Reddit", "Telegram",
+        # "TikTok", "X"
     ]
     
-    # Read and filter CSV - force platform_uid to string to handle mixed types
+    # Read CSV with robust settings to handle messy data
     df = pl.scan_csv(
         csv_path,
-        dtypes={"platform_uid": pl.Utf8}  # Force platform_uid to string
+        infer_schema_length=0,  # Don't infer schema, treat everything as strings
+        ignore_errors=True      # Skip problematic rows instead of failing
     ).filter(
         pl.col("platform_name").is_in(allowed_platforms)
     ).collect()

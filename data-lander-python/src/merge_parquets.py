@@ -3,6 +3,7 @@ from collections import defaultdict
 from loguru import logger
 import os
 import tempfile
+import re
 import polars as pl
 
 async def merge_platform_parquets(
