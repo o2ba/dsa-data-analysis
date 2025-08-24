@@ -6,29 +6,15 @@ import time
 from dotenv import load_dotenv
 from botocore.exceptions import ClientError
 from s3.date_util import get_existing_dates_from_s3
+from utils.dsa_url_generator import generate_urls
 from utils.date_parser import parse_date_or_range
 import typer
+from commands.lander import lander
 
 app = typer.Typer()
+# Data Lander
+app.command()(lander)
 
-@app.command()
-def land_data(
-    date: str = typer.Option(..., "--date", "-d", help="Date or date range to land data in YYYY-MM-DD format. Expects a single date (e.g., '2023-10-01') or a range (e.g., '2023-10-01:2023-10-05')"),
-    force: bool = typer.Option(False, "--force", "-f", help="Force backfill even if data already exists"),
-    max_retries: int = typer.Option(3, "--max-retries", "-r", help="Maximum number of retries for task start failures"),
-    max_concurrent: int = typer.Option(15, "--max-concurrent", "-c", help="Maximum concurrent tasks to run"),
-):
-    dates: List[str] = parse_date_or_range(date)
-    
-    if len(dates) == 1:
-        typer.echo(f"Attempting to land data for {dates[0]}")
-    else:
-        typer.echo(f"Attempting to land data for {len(dates)} days from {dates[0]} to {dates[-1]}")
-
-
-    print("Hallo Welt! Land data utility started for date(s):", date)
-    
-    ...
 
 
 @app.command()
@@ -230,4 +216,5 @@ def main_alt():
     print(f"📊 Total processed: {len(missing_entries)} dates")
 
 if __name__ == '__main__':
+    load_dotenv()
     app()
