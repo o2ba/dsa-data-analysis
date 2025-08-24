@@ -1,0 +1,34 @@
+{
+    "locations": [
+        {
+            "name": "Amrit Berlin Potsdammer Plz",
+            "place_id": "ChIJr7mtJslRqEcRWYWVINsSbkg",
+            "category": "restaurant",
+            "poll_frequency": "0 */4 * * *"
+        },
+        {
+            "name": "Route 66 Diner",
+            "place_id": "ChIJn1QTraJRqEcRNfbOtYRy9mU",
+            "category": "restaurant",
+            "poll_frequency": "0 */6 * * *"
+        },
+        {
+            "name": "Restaurant Salsa Mexicana",
+            "place_id": "ChIJ_6fFVMBOqEcRZHqF4VL7iV8",
+            "category": "restaurant",
+            "poll_frequency": "0 */24 * * *"
+        },
+        {
+            "name": "Conny GmbH",
+            "place_id": "ChIJH61ArrNPqEcRjaKICBAqvxA",
+            "category": "legal_services",
+            "poll_frequency": "0 */24 * * *"
+        },
+        {
+            "name": "Mustafa's Can Gemüse Kebap",
+            "place_id": "ChIJifrSu-BRqEcRIZozDhXVVE0",
+            "category": "restaurant",
+            "poll_frequency": "0 */6 * * *"
+        }
+    ]   
+}

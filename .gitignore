@@ -4,3 +4,4 @@ dsa-tdb/
 **/.env
 **/target/*
 Makefile
+.venv
